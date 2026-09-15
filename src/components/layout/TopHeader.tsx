@@ -29,7 +29,8 @@ function useLiveTime() {
 
 export default function TopHeader() {
   const { pathname } = useLocation();
-  const { adminName } = useAuth();
+  const { user } = useAuth();
+  const adminName = user?.name ?? 'Admin';
   const now = useLiveTime();
 
   const initials = adminName
