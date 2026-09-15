@@ -1,20 +1,27 @@
-// StatusBadge — reusable Safe/Danger indicator
-import type { WorkerStatus } from '../../data/types';
+// StatusBadge — reusable status pill
+type Tone = 'safe' | 'danger' | 'warning' | 'info';
+
+const TONE_CLASS: Record<Tone, string> = {
+  safe: 'status-badge--safe',
+  danger: 'status-badge--danger',
+  warning: 'status-badge--warning',
+  info: 'status-badge--info',
+};
 
 interface Props {
-  status: WorkerStatus;
-  size?: 'sm' | 'md';
+  tone?: Tone;
+  children: React.ReactNode;
+  small?: boolean;
 }
 
-export default function StatusBadge({ status, size = 'md' }: Props) {
-  const isSafe = status === 'SAFE';
+export default function StatusBadge({ tone = 'safe', children, small }: Props) {
   return (
     <span
-      className={`status-badge ${isSafe ? 'status-badge--safe' : 'status-badge--danger'}`}
-      style={size === 'sm' ? { fontSize: '0.65rem', padding: '2px 8px' } : {}}
+      className={`status-badge ${TONE_CLASS[tone]}`}
+      style={small ? { fontSize: '0.65rem', padding: '2px 8px' } : undefined}
     >
       <span className="status-badge-dot" />
-      {status}
+      {children}
     </span>
   );
 }

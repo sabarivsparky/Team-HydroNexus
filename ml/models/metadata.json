@@ -1,0 +1,39 @@
+{
+  "model_type": "SVR",
+  "version": "SVR-v1.0",
+  "features": [
+    "L",
+    "a",
+    "b",
+    "delta_e",
+    "delta_e_env"
+  ],
+  "target": "dose_ppm_hr",
+  "target_units": "ppm\u00b7hr",
+  "metrics": {
+    "LinearRegression": {
+      "cv_mae": 5.2401,
+      "cv_r2": 0.9349,
+      "test_mae": 5.7839,
+      "test_r2": 0.9069
+    },
+    "RandomForestRegressor": {
+      "cv_mae": 3.6716,
+      "cv_r2": 0.9491,
+      "test_mae": 3.711,
+      "test_r2": 0.9572
+    },
+    "SVR": {
+      "cv_mae": 3.8798,
+      "cv_r2": 0.9511,
+      "test_mae": 4.0699,
+      "test_r2": 0.9388
+    }
+  },
+  "selected": "SVR",
+  "n_train": 288,
+  "n_test": 72,
+  "trained_at": "2026-09-15T14:35:59.368994Z",
+  "calibration_source": "calibration_simulated.csv",
+  "simulated_calibration": true
+}

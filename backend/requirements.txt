@@ -1,0 +1,26 @@
+# ─── H₂S Dosimeter backend ───────────────────────────────────
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+SQLAlchemy==2.0.36
+pydantic==2.10.4
+email-validator==2.2.0
+python-jose[cryptography]==3.3.0
+passlib==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.20
+python-dotenv==1.0.1
+
+# ─── Computer vision ─────────────────────────────────────────
+opencv-contrib-python-headless==4.10.0.84
+numpy==1.26.4
+Pillow==10.4.0
+qrcode==7.4.2
+
+# ─── ML ──────────────────────────────────────────────────────
+pandas==2.2.3
+scikit-learn==1.5.2
+joblib==1.4.2
+
+# ─── Testing ─────────────────────────────────────────────────
+pytest==8.3.4
+httpx==0.28.1
