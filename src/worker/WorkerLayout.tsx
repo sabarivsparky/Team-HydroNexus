@@ -1,10 +1,11 @@
-// Mobile worker app shell: top bar + content + bottom navigation.
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Camera, Clock3, House, LogOut, Wind } from 'lucide-react';
+import { Camera, Clock3, House, LogOut, Moon, Sun, Wind } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function WorkerLayout() {
   const { user, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -22,9 +23,19 @@ export default function WorkerLayout() {
             <div className="wk-header-sub">{user?.name ?? 'Worker'} · {user?.employee_id}</div>
           </div>
         </div>
-        <button className="wk-header-logout" onClick={handleLogout} aria-label="Logout">
-          <LogOut size={18} />
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button
+            className="wk-header-logout"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={isDark ? "Light theme" : "Dark theme"}
+          >
+            {isDark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button className="wk-header-logout" onClick={handleLogout} aria-label="Logout" title="Logout">
+            <LogOut size={17} />
+          </button>
+        </div>
       </header>
 
       <main className="wk-content">

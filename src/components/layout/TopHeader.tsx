@@ -1,6 +1,8 @@
 // Top header bar
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import { Moon, Sun } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const PAGE_TITLES: Record<string, string> = {
@@ -30,6 +32,7 @@ function useLiveTime() {
 export default function TopHeader() {
   const { pathname } = useLocation();
   const { user } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const adminName = user?.name ?? 'Admin';
   const now = useLiveTime();
 
@@ -62,6 +65,17 @@ export default function TopHeader() {
         <div className="header-datetime">
           {formattedDate} &nbsp;·&nbsp; {formattedTime}
         </div>
+
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleTheme}
+          title={isDark ? "Switch to light theme" : "Switch to dark theme"}
+          aria-label="Toggle theme"
+          id="theme-toggle-btn"
+        >
+          {isDark ? <Sun size={15} className="theme-toggle-icon sun" /> : <Moon size={15} className="theme-toggle-icon moon" />}
+          <span className="theme-toggle-text">{isDark ? 'Dark Mode' : 'Light Mode'}</span>
+        </button>
 
         <div className="header-admin-info">
           <div className="header-admin-avatar">{initials}</div>
